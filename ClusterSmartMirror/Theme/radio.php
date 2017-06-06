@@ -9,6 +9,8 @@ else
 {
     $page = "radio";
     include ('layout.php');
+    include ('database.php');
+   
     ?>
 <html>
     <section id="main-content">
@@ -18,12 +20,16 @@ else
           		<div class="col-lg-12">                            
           		<p><form method="POST" action="radio.php">
                                 <select>
-                                    <option value="Radio538">Radio 538</option>
-                                    <option value="SlamFM">Slam Fm</option>
-                                    <option value="Veronica">Veronica</option>
-                                    <option value="QMusic">QMusic</option>
-                                    <option value="SkyRadio">Skyradio</option>
-                                    <option value="Radio2">Radio 2</option>
+                                    <?php 
+                                        
+                                    $query = mysqli_query($connection, "select * from channel");
+    
+                                    while($row = mysqli_fetch_array($query)) {
+
+                                        echo "<option value='". $row['ID'] ."'>". $row['Name'] ."</option>";
+                                    
+                                    }
+                                    ?>
                                 </select></p>
 </html>
         
@@ -31,4 +37,4 @@ else
 
     include ('footer.php');
 }
-?>
+
