@@ -77,10 +77,10 @@
                   
                   <li class="sub-menu">
                       <a 
-                          <?php if($page == "clock"){ ?> class='active' <?php } else { }?>
-                          href="clock.php">
+                          <?php if($page == "time"){ ?> class='active' <?php } else { }?>
+                          href="time.php">
                           <i class="fa fa-cogs"></i>
-                          <span>Clock</span>
+                          <span>Time</span>
                       </a>
                   </li>
                   
