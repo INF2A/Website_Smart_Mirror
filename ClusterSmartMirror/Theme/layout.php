@@ -119,6 +119,15 @@
                           <span>Calendar</span>
                       </a>
                   </li>
+                  
+                  <li class="sub-menu">
+                      <a 
+                          <?php if($page == "wifi"){ ?> class='active' <?php } else { }?>
+                          href="wifi.php">
+                          <i class="fa fa-cogs"></i>
+                          <span>WiFi settings</span>
+                      </a>
+                  </li>
 
               </ul>
               <!-- sidebar menu end-->

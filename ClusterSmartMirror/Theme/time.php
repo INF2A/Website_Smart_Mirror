@@ -34,7 +34,7 @@ else
                             }
                             ?>
                             </p></br>
-                            <h4><b>Change timezone</b></h4>
+                            <h4><b>Search and select your time zone</b></h4>
                             <p><form method="POST" action="time.php">
                                 <input type="text" name="searchtimezone"><br /><br />
                                 <input type="submit" name="submitsearch" value="Search timezones"><br /><br /></form>
