@@ -12,11 +12,10 @@ else
     include ('database.php');
     
     if (isset($_POST['updatetimezone']))
-                                {
-                                    $selectedtimezone = $_POST['timezonesresult'];
-                                    $updatetimezone = mysqli_query($connection, "UPDATE time set User_ID = ". $id. ", Timezone_ID = ". $selectedtimezone);
-                                    echo "mijn id is " . $id . "en mijn tijdzone is " .$selectedtimezone;
-                                }
+        {
+            $selectedtimezone = $_POST['timezonesresult'];
+            $updatetimezone = mysqli_query($connection, "UPDATE time set User_ID = ". $id. ", Timezone_ID = ". $selectedtimezone);
+        }
     ?>
 <html>
     <section id="main-content">
@@ -26,8 +25,8 @@ else
           		<div class="col-lg-12">
                             <p>
                             <?php
-                            $settimezone = mysqli_query($connection, "SELECT time_zone FROM time_zones INNER JOIN time ON time_zones.ID = time.Timezone_ID WHERE time.User_ID = " . $id);
-                            while($row = mysqli_fetch_array($settimezone)) {
+                            $selecttimezone = mysqli_query($connection, "SELECT time_zone FROM time_zones INNER JOIN time ON time_zones.ID = time.Timezone_ID WHERE time.User_ID = " . $id);
+                            while($row = mysqli_fetch_array($selecttimezone)) {
 
 	                      echo "Your time zone is <b>" .$row['time_zone'] . "</b><br />";
 
