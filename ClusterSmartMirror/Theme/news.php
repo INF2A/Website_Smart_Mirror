@@ -13,8 +13,8 @@ else
     
     if (isset($_POST['selectnews']))
     {
-        $selectednews = $_POST['newssubject'];
-        $updatenews = mysqli_query($connection, "UPDATE news_pref set User_ID = ". $id. ", News_pref_item_ID = ". $selectednews);
+        $preferednews = $_POST['newssubject'];
+        $updatenews = mysqli_query($connection, "UPDATE news_pref set User_ID = ". $id. ", News_pref_item_ID = ". $preferednews);
     }
     ?>
 <html>
@@ -26,6 +26,13 @@ else
                             <p><form method="POST" action="news.php">
                                 <select name="newssource">
                                     <?php 
+                                    
+                                    $selectednews = mysqli_query($connection, "SELECT Name FROM news_pref_item INNER JOIN news_pref ON news_pref_item.ID = news_pref.News_pref_item_ID WHERE news_pref.User_ID =" . $id);
+                                    while($row = mysqli_fetch_array($selectednews)) {
+
+                                        echo "<p>Your prefered news source is <b>" .$row['Name'] . "</b></p>";
+
+                                    }
                                         
                                     $getnewssource = mysqli_query($connection, "SELECT DISTINCT SUBSTRING_INDEX(Name, ' ', 1) as Name FROM news_pref_item");
     
