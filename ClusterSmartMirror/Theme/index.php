@@ -23,14 +23,14 @@ else
                               <thead>
                               <tr>
                                   <th><i class="fa fa-bullhorn"></i> Api</th>
-                                  <th class="hidden-phone"><i class="fa fa-question-circle"></i> Settings</th>
+                                  <th><i class="fa fa-question-circle"></i> Settings</th>
                                   <th></th>
                               </tr>
                               </thead>
                               <tbody>
                               <tr>
                                   <td><a href="time.php">Time</a></td>
-                                  <td class="hidden-phone">
+                                  <td>
                                         <?php
                                       
                                         $selectedtimezone = mysqli_query($connection, "SELECT time_zone FROM time_zones INNER JOIN time ON time_zones.ID = time.Timezone_ID WHERE time.User_ID = " . $id);
@@ -53,7 +53,7 @@ else
                                           Weather
                                       </a>
                                   </td>
-                                  <td class="hidden-phone">
+                                  <td>
                                         <?php
                                       
                                         $selectedmetric = mysqli_query($connection, "SELECT Name FROM weather_pref INNER JOIN weather ON weather_pref.ID = weather.Weather_pref_ID WHERE weather.User_ID =" . $id);
@@ -83,7 +83,7 @@ else
                                           News
                                       </a>
                                   </td>
-                                  <td class="hidden-phone">
+                                  <td>
                                         <?php
                                       
                                         $selectednews = mysqli_query($connection, "SELECT Name FROM news_pref_item INNER JOIN news_pref ON news_pref_item.ID = news_pref.News_pref_item_ID WHERE news_pref.User_ID =" . $id);
@@ -106,7 +106,7 @@ else
                                           Radio
                                       </a>
                                   </td>
-                                  <td class="hidden-phone">
+                                  <td>
                                         <?php
                                       
                                         $selectedradio = mysqli_query($connection, "SELECT Name FROM channel INNER JOIN radio_fav ON channel.ID = radio_fav.Channel_ID WHERE radio_fav.User_ID =" . $id);
@@ -125,7 +125,7 @@ else
                               </tr>
                               <tr>
                                   <td><a href="wifi.php">Wifi</a></td>
-                                  <td class="hidden-phone">
+                                  <td>
                                         <?php
                                       
                                         $selectedwifi = mysqli_query($connection, "SELECT * FROM wifi_settings WHERE User_ID =" . $id);
