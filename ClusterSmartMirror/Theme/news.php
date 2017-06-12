@@ -23,6 +23,7 @@ else
           	<h3><i class="fa fa-angle-right"></i> News</h3>
           	<div class="row mt">
           		<div class="col-lg-12">
+                            <h4><b>Change news settings</b></h4>
                             <p>
                             <?php
                             

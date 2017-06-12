@@ -70,7 +70,7 @@
                       <a 
                           <?php if($page == "index"){ ?> class='active' <?php } else { }?> 
                           href="index.php">
-                          <i class="fa fa-cogs"></i>
+                          <i class="fa fa-dashboard"></i>
                           <span>Dashboard</span>
                       </a>
                   </li>

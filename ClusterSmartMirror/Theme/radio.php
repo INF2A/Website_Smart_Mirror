@@ -23,6 +23,7 @@ else
           	<h3><i class="fa fa-angle-right"></i> Radio</h3>
           	<div class="row mt">
           		<div class="col-lg-12"> 
+                            <h4><b>Change radio settings</b></h4>
                         <p><?php
                             $favoriteradio = mysqli_query($connection, "SELECT Name FROM channel INNER JOIN radio_fav ON channel.ID = radio_fav.Channel_ID WHERE radio_fav.User_ID =" . $id);
                             while($row = mysqli_fetch_array($favoriteradio)) {

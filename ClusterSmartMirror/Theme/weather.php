@@ -64,7 +64,7 @@ else
                             
                             ?>
                             <p>
-                            <h4>Change prefered settings</h4>
+                            <h4><b>Change prefered settings</b></h4>
                             <form method="POST" action="weather.php">
                                 <p><input type="text" name="weatherlocation"></p>
                                     <p><input type="radio" name="prefsystem" value="1" checked> Metric

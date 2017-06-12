@@ -24,6 +24,7 @@ else
           	<h3><i class="fa fa-angle-right"></i> WiFi settings</h3>
           	<div class="row mt">
           		<div class="col-lg-12">
+                            <h4><b>Change WIFI settings</b></h4>
                             <p>
                             <form method="POST" action="wifi.php">
                                 <?php
