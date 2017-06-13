@@ -36,44 +36,39 @@ else
 
                             ?>
                             <form method="POST" action="news.php">
-                                <select name="newssource">
                                     <?php 
                                                                                                              
-                                    $getnewssource = mysqli_query($connection, "SELECT DISTINCT SUBSTRING_INDEX(Name, ' ', 1) as Name FROM news_pref_item");
-    
+                                    $getnewssource = mysqli_query($connection, "SELECT * FROM news_pref_item");
+                                    $counter = 1;
                                     while($row = mysqli_fetch_array($getnewssource)) {
 
-                                        echo "<option value='". $row['Name'] ."'>". $row['Name'] ."</option>";
+                                        echo $row['Name'];
+                                        echo " <input type='radio' name='". $counter. "' value='true'>";
+                                        echo " <input type='radio' name='". $counter. "' value='false'><br>";
+                                        $counter ++;
                                     
                                     }
                                     ?>
-                                </select><br /><br />
-                                <input type="submit" name="searchnews" value="Show subsites">
+                                <input type="submit" name="safenews" value="Safe">
                             </p><br />
                             <?php 
                             
-                                if(isset($_POST['searchnews']))
+                                if(isset($_POST['safenews']))
                                 {
-                            ?>
-                            
-                            <p><form method="POST" action="news.php">
-                                 <select name="newssubject">
-                                    <?php 
-                                    $newssource = $_POST['newssource'];
-                                    $getnewssubject = mysqli_query($connection, "SELECT * FROM news_pref_item WHERE Name LIKE '%" .$newssource. "%'");
-    
-                                    while($row = mysqli_fetch_array($getnewssubject)) {
-
-                                        echo "<option value='". $row['ID'] ."'>". $row['Name'] ."</option>";
-                                    
+                                    for($count = 1; $count < $counter; $count++)
+                                    {
+                                        $value = 1;
+                                        if($_POST["{$count}"] == 'true')
+                                        {
+                                            echo "Het werkt<br>";
+                                        }
+                                        else
+                                        {
+                                            echo "Het werkt goed<br>";
+                                        }
+                                        $value ++;
                                     }
-                                    ?>
-                                </select><br /><br />
-                                <input type="submit" name="selectnews" value="Select site">
-                            
-                            <?php
                                 }
-                            
                             ?>
 </html>
         
