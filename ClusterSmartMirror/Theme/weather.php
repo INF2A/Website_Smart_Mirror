@@ -31,6 +31,7 @@ else
           	<h3><i class="fa fa-angle-right"></i> Weather</h3>
           	<div class="row mt">
           		<div class="col-lg-12">
+                            <h4><b>Change prefered settings</b></h4>
                             <?php
                             
                             if (isset($_POST['changelocation']))
@@ -64,7 +65,6 @@ else
                             
                             ?>
                             <p>
-                            <h4><b>Change prefered settings</b></h4>
                             <form method="POST" action="weather.php">
                                 <p><input type="text" name="weatherlocation"></p>
                                     <p><input type="radio" name="prefsystem" value="1" checked> Metric

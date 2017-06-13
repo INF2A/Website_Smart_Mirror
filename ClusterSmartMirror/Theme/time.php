@@ -23,6 +23,7 @@ else
           	<h3><i class="fa fa-angle-right"></i> Time</h3>
           	<div class="row mt">
           		<div class="col-lg-12">
+                            <h4><b>Search and select your time zone</b></h4>
                             <p>
                             <?php
                             $selecttimezone = mysqli_query($connection, "SELECT time_zone FROM time_zones INNER JOIN time ON time_zones.ID = time.Timezone_ID WHERE time.User_ID = " . $id);
@@ -33,7 +34,6 @@ else
                             }
                             ?>
                             </p></br>
-                            <h4><b>Search and select your time zone</b></h4>
                             <p><form method="POST" action="time.php">
                                 <input type="text" name="searchtimezone"><br /><br />
                                 <input type="submit" name="submitsearch" value="Search timezones"><br /><br /></form>
