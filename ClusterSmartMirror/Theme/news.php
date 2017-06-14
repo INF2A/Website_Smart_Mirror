@@ -52,14 +52,6 @@ else
                                     ?>
                                 <br><input type="submit" name="safenews" value="Safe preferences">
                             </p><br />
-                            <?php                                                      
-                              
-                                
-                            
-                            
-                            
-                            
-                            ?>
 </html>
         
 <?php

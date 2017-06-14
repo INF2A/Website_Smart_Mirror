@@ -110,16 +110,7 @@
                           <span>Radio</span>
                       </a>
                   </li>
-                  
-                  <li class="sub-menu">
-                      <a 
-                          <?php if($page == "calendar"){ ?> class='active' <?php } else { }?>
-                          href="calendar.php">
-                          <i class="fa fa-cogs"></i>
-                          <span>Calendar</span>
-                      </a>
-                  </li>
-                  
+                                   
                   <li class="sub-menu">
                       <a 
                           <?php if($page == "wifi"){ ?> class='active' <?php } else { }?>
