@@ -66,7 +66,7 @@ else
                                         $selectedlocation = mysqli_query($connection, "SELECT location FROM weather WHERE User_ID =" .$id);
                                         while($row = mysqli_fetch_array($selectedlocation)) {
 
-                                            echo "<br>Locatie: ".$row['location'];
+                                            echo "<br>Location: ".$row['location'];
 
                                         }
                                       
@@ -89,7 +89,7 @@ else
                                         $selectednews = mysqli_query($connection, "SELECT Name FROM news_pref_item INNER JOIN news_pref ON news_pref_item.ID = news_pref.News_pref_item_ID WHERE news_pref.User_ID =" . $id);
                                         while($row = mysqli_fetch_array($selectednews)) {
 
-                                            echo $row['Name'];
+                                            echo $row['Name'] ."<br>";
 
                                         }
                                       
