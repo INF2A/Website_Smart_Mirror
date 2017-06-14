@@ -11,12 +11,16 @@ else
     include ('layout.php');
     include ('database.php');
     
-    if (isset($_POST['selectnews']))
-    {
-        $preferednews = $_POST['newssubject'];
-        $updatenews = mysqli_query($connection, "UPDATE news_pref set User_ID = ". $id. ", News_pref_item_ID = ". $preferednews);
-    }
-    ?>
+    if(isset($_POST['safenews']))
+        {
+            $news = $_POST['news'];
+            $deletesettings = mysqli_query($connection, "DELETE FROM `news_pref` WHERE `User_ID`= ". $id);
+            foreach ($news as $sources)
+            {
+                $updatetimezone = mysqli_query($connection, "INSERT INTO `news_pref`(`User_ID`, `News_pref_item_ID`) VALUES (". $id .", ". $sources.")");
+            }
+        }
+?>
 <html>
     <section id="main-content">
           <section class="wrapper site-min-height">
@@ -28,11 +32,10 @@ else
                             <?php
                             
                             $selectednews = mysqli_query($connection, "SELECT Name FROM news_pref_item INNER JOIN news_pref ON news_pref_item.ID = news_pref.News_pref_item_ID WHERE news_pref.User_ID =" . $id);
-                                    while($row = mysqli_fetch_array($selectednews)) {
-
-                                        echo "<p>Your prefered news source is <b>" .$row['Name'] . "</b></p>";
-
-                                    }
+                                while($row = mysqli_fetch_array($selectednews)) 
+                                {
+                                    echo "<p>Your prefered news source is <b>" .$row['Name'] . "</b></p>";
+                                }
 
                             ?>
                             <form method="POST" action="news.php">
@@ -40,40 +43,27 @@ else
                                                                                                              
                                     $getnewssource = mysqli_query($connection, "SELECT * FROM news_pref_item");
                                     $counter = 1;
-                                    while($row = mysqli_fetch_array($getnewssource)) {
-
-                                        echo $row['Name'];
-                                        echo " <input type='radio' name='". $counter. "' value='true'>";
-                                        echo " <input type='radio' name='". $counter. "' value='false'><br>";
+                                    while($row = mysqli_fetch_array($getnewssource)) 
+                                    {
+                                        echo " <input type='checkbox' name='news[]' value='".$counter. "'>&nbsp". $row['Name']. "<br>";
                                         $counter ++;
                                     
                                     }
                                     ?>
-                                <input type="submit" name="safenews" value="Safe">
+                                <br><input type="submit" name="safenews" value="Safe preferences">
                             </p><br />
-                            <?php 
+                            <?php                                                      
+                              
+                                
                             
-                                if(isset($_POST['safenews']))
-                                {
-                                    for($count = 1; $count < $counter; $count++)
-                                    {
-                                        $value = 1;
-                                        if($_POST["{$count}"] == 'true')
-                                        {
-                                            echo "Het werkt<br>";
-                                        }
-                                        else
-                                        {
-                                            echo "Het werkt goed<br>";
-                                        }
-                                        $value ++;
-                                    }
-                                }
+                            
+                            
+                            
                             ?>
 </html>
         
 <?php
-
+                                
     include ('footer.php');
 }
 ?>
