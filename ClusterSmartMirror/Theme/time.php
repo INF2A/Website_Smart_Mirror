@@ -62,8 +62,6 @@ else
                                     }
                                 ?>
                             </p>
-                              
-                        <p><img src="assets/img/timezones.jpg" alt="timezones" style="width:100%;height:25%;"></p>
 </html>
         
 <?php
