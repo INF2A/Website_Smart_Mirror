@@ -1,4 +1,5 @@
 <?php
+
 include('session.php');
 
 if (empty($login_session))
@@ -16,7 +17,9 @@ else
         $selectedradio = $_POST['channels'];
         $updatefavorite = mysqli_query($connection, "UPDATE radio_fav c set User_ID = ". $id. ", Channel_ID = ". $selectedradio);
     }
-    ?>
+    
+?>
+
 <html>
     <section id="main-content">
           <section class="wrapper site-min-height">
@@ -24,27 +27,31 @@ else
           	<div class="row mt">
           		<div class="col-lg-12"> 
                             <h4><b>Change radio settings</b></h4>
-                        <p><?php
-                            $favoriteradio = mysqli_query($connection, "SELECT Name FROM channel INNER JOIN radio_fav ON channel.ID = radio_fav.Channel_ID WHERE radio_fav.User_ID =" . $id);
-                            while($row = mysqli_fetch_array($favoriteradio)) {
-
-	                      echo "Your favorite radio station is <b>" .$row['Name'] . "</b><br />";
-
-                            }
+                        
+                        <?php
+                            
+                        $favoriteradio = mysqli_query($connection, "SELECT Name FROM channel INNER JOIN radio_fav ON channel.ID = radio_fav.Channel_ID WHERE radio_fav.User_ID =" . $id);
+                        while($row = mysqli_fetch_array($favoriteradio))
+                        {
+                            echo "<p>Your favorite radio station is <b>" .$row['Name'] . "</b></p><br />";
+                        }
+                        
                         ?>
-                        </p>
+                            
           		<p><form method="POST" action="radio.php">
                                 <select name="channels">
+                                    
                                     <?php 
                                         
                                     $channels = mysqli_query($connection, "select * from channel");
     
-                                    while($row = mysqli_fetch_array($channels)) {
-
+                                    while($row = mysqli_fetch_array($channels))
+                                    {
                                         echo "<option value='". $row['ID'] ."'>". $row['Name'] ."</option>";
-                                    
                                     }
+                                    
                                     ?>
+                                    
                                 </select><br /><br />
                                 <input type="submit" name="updateradio" value="Change favorite">
                         </p>
@@ -53,5 +60,6 @@ else
 <?php
 
     include ('footer.php');
+    
 }
 
