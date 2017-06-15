@@ -29,29 +29,31 @@ else
           		<div class="col-lg-12">
                             <h4><b>Change news settings</b></h4>
                             <p>
+                                
                             <?php
                             
                             $selectednews = mysqli_query($connection, "SELECT Name FROM news_pref_item INNER JOIN news_pref ON news_pref_item.ID = news_pref.News_pref_item_ID WHERE news_pref.User_ID =" . $id);
-                                while($row = mysqli_fetch_array($selectednews)) 
-                                {
-                                    echo "<p>Your prefered news source is <b>" .$row['Name'] . "</b></p>";
-                                }
+                            while($row = mysqli_fetch_array($selectednews)) 
+                            {
+                                echo "<p>Your prefered news source is <b>" .$row['Name'] . "</b></p>";
+                            }
 
                             ?>
                             <form method="POST" action="news.php">
-                                    <?php 
+                                
+                                <?php 
                                                                                                              
-                                    $getnewssource = mysqli_query($connection, "SELECT * FROM news_pref_item");
-                                    $counter = 1;
-                                    while($row = mysqli_fetch_array($getnewssource)) 
-                                    {
-                                        echo " <input type='checkbox' name='news[]' value='".$counter. "'>&nbsp". $row['Name']. "<br>";
-                                        $counter ++;
-                                    
-                                    }
-                                    ?>
-                                <br><input type="submit" name="safenews" value="Safe preferences">
-                            </p><br />
+                                $getnewssource = mysqli_query($connection, "SELECT * FROM news_pref_item");
+                                $counter = 1;
+                                while($row = mysqli_fetch_array($getnewssource)) 
+                                {
+                                    echo " <input type='checkbox' name='news[]' value='".$counter. "'>&nbsp". $row['Name']. "<br>";
+                                    $counter ++;
+                                }
+                                ?>
+                                
+                            <br><input type="submit" name="safenews" value="Safe preferences">
+                            </p>
 </html>
         
 <?php

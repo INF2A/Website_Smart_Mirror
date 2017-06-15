@@ -113,31 +113,33 @@ else
                                             <a href="radio.php.php"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
                                         </td>
                                     </tr>
-                              <tr>
-                                  <td><a href="wifi.php">Wifi</a></td>
-                                  <td>
-                                        <?php
+                                    <tr>
+                                        <td><a href="wifi.php">Wifi</a></td>
+                                        <td>
+                                            
+                                            <?php
                                       
-                                        $selectedwifi = mysqli_query($connection, "SELECT * FROM wifi_settings WHERE User_ID =" . $id);
-                                        while($row = mysqli_fetch_array($selectedwifi)) {
-
-                                            echo "SSID: <b>".$row['ssid'] . "</b><br> Password: <b>" .$row['password']."</b>";
-
-                                        }
+                                            $selectedwifi = mysqli_query($connection, "SELECT * FROM wifi_settings WHERE User_ID =" . $id);
+                                            while($row = mysqli_fetch_array($selectedwifi))
+                                            {
+                                                echo "SSID: <b>".$row['ssid'] . "</b><br> Password: <b>" .$row['password']."</b>";
+                                            }
                                       
-                                      ?>
+                                            ?>
                                       
-                                  </td>
-                                  <td>
-                                      <a href="wifi.php"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
-                                  </td>
-                              </tr>
-                              </tbody>
-                          </table>
+                                        </td>
+                                        <td>
+                                            <a href="wifi.php"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                        </table>
 </html>
         
 <?php
 
-    include ('footer.php');
+include ('footer.php');
+    
 }
+
 ?>
