@@ -24,10 +24,11 @@ else
 <html>
     <section id="main-content">
           <section class="wrapper site-min-height">
-          	<h3><i class="fa fa-angle-right"></i> WiFi settings</h3>
+          	<h1><i class="fa fa-angle-right"></i> WiFi settings</h1>
           	<div class="row mt">
           		<div class="col-lg-12">
-                            <h4><b>Change WIFI settings</b></h4>
+                            <div class="form-panel">
+                                <h4><i class="fa fa-angle-right"></i> Change WIFI settings </h4><br>
                             <p>
                             <form method="POST" action="wifi.php">
                                 
@@ -36,15 +37,24 @@ else
                             $getwifisettings = mysqli_query($connection, "SELECT * FROM wifi_settings WHERE User_ID = " . $id);
                             while($row = mysqli_fetch_array($getwifisettings))
                             {
-                                echo "<p>SSID:<input type='text' name='ssid' value='" .$row['ssid'] . "'></p>";
-                                echo "<p>Password: <input type='text' name='ssidpassword' value='" .$row['password'] . "'></p>";
+                                echo "<p><div class='form-group'>
+                                            <label class='col-sm-2 col-sm-2 control-label'>SSID</label>
+                                            <div class='col-sm-10'>
+                                                <input type='text' name='ssid' class='form-control' value='" .$row['ssid'] . "'></p>
+                                            </div>";
+                                echo "<p><div class='form-group'>
+                                            <label class='col-sm-2 col-sm-2 control-label'>Password</label>
+                                            <div class='col-sm-10'>
+                                                <input type='text'  name='ssidpassword' class='form-control' value='" .$row['password'] . "'></p>
+                                            </div>";
                             }
                                 
                             ?>
                                 
-                                <p><input type="submit" name="changewifi" value="Safe changes"></p>
+                                <p><input class="btn btn-theme" type="submit" name="changewifi" value="Safe changes"></p>
                             </form>
                             </p>
+                            </div>
 </html>
         
 <?php

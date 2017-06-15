@@ -24,21 +24,28 @@ else
 <html>
     <section id="main-content">
           <section class="wrapper site-min-height">
-          	<h3><i class="fa fa-angle-right"></i> News</h3>
+          	<h1><i class="fa fa-angle-right"></i> News</h1><br />
+                <div class="form-panel">
+                    <h4><i class="fa fa-angle-right"></i> Your favorite news sources </h4>
+                <p>
+                    <select multiple class="form-control">
+                    <?php
+                            
+                        $selectednews = mysqli_query($connection, "SELECT Name FROM news_pref_item INNER JOIN news_pref ON news_pref_item.ID = news_pref.News_pref_item_ID WHERE news_pref.User_ID =" . $id);
+                        while($row = mysqli_fetch_array($selectednews)) 
+                        {
+                            echo "<option>" .$row['Name'] . "</option>";
+                        }
+                         
+                    ?>
+                    </select>    
+                </p>
+                </div>
           	<div class="row mt">
           		<div class="col-lg-12">
-                            <h4><b>Change news settings</b></h4>
-                            <p>
-                                
-                            <?php
-                            
-                            $selectednews = mysqli_query($connection, "SELECT Name FROM news_pref_item INNER JOIN news_pref ON news_pref_item.ID = news_pref.News_pref_item_ID WHERE news_pref.User_ID =" . $id);
-                            while($row = mysqli_fetch_array($selectednews)) 
-                            {
-                                echo "<p>Your prefered news source is <b>" .$row['Name'] . "</b></p>";
-                            }
-
-                            ?>
+                            <div class="form-panel">
+                            <h4><i class="fa fa-angle-right"></i> Select your favorite news sources </h4>
+                            <p>                               
                             <form method="POST" action="news.php">
                                 
                                 <?php 
@@ -52,8 +59,9 @@ else
                                 }
                                 ?>
                                 
-                            <br><input type="submit" name="safenews" value="Safe preferences">
+                            <br><input class="btn btn-theme" type="submit" name="safenews" value="Safe preferences">
                             </p>
+                            </div>
 </html>
         
 <?php

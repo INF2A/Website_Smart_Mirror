@@ -29,10 +29,27 @@ else
 <html>
     <section id="main-content">
           <section class="wrapper site-min-height">
-          	<h3><i class="fa fa-angle-right"></i> Weather</h3>
+          	<h1><i class="fa fa-angle-right"></i> Weather</h1>
+                <p>
+                    <?php
+                    $preferedmetric = mysqli_query($connection, "SELECT Name FROM weather_pref INNER JOIN weather ON weather_pref.ID = weather.Weather_pref_ID WHERE weather.User_ID =" . $id);
+                    while($row = mysqli_fetch_array($preferedmetric)) 
+                    {
+                        echo "<p>Your prefered metric is <b>" .$row['Name'] . "</b>";
+                    }
+                            
+                    $selectedlocation = mysqli_query($connection, "SELECT location FROM weather WHERE User_ID =" .$id);
+                    while($row = mysqli_fetch_array($selectedlocation)) 
+                    {
+                        echo " and your location is <b>" .$row['location'] . "</b></p>";
+                    }
+                    ?>
+                            
+                </p>
           	<div class="row mt">
           		<div class="col-lg-12">
-                            <h4><b>Change prefered settings</b></h4>
+                        <div class="form-panel">
+                            <h4><i class="fa fa-angle-right"></i> Change location and prefered system </h4>
                             <?php
                             
                             if (isset($_POST['changelocation']))
@@ -50,27 +67,16 @@ else
                                 }
                             }
                             
-                            $preferedmetric = mysqli_query($connection, "SELECT Name FROM weather_pref INNER JOIN weather ON weather_pref.ID = weather.Weather_pref_ID WHERE weather.User_ID =" . $id);
-                            while($row = mysqli_fetch_array($preferedmetric)) 
-                            {
-                                echo "<p>Your prefered metric is <b>" .$row['Name'] . "</b>";
-                            }
-                            
-                            $selectedlocation = mysqli_query($connection, "SELECT location FROM weather WHERE User_ID =" .$id);
-                            while($row = mysqli_fetch_array($selectedlocation)) 
-                            {
-                                echo " and your location is <b>" .$row['location'] . "</b></p>";
-                            }
-                            
                             ?>
                             <p>
                             <form method="POST" action="weather.php">
-                                <p><input type="text" name="weatherlocation"></p>
+                                <p><input class="form-control" type="text" name="weatherlocation"></p>
                                     <p><input type="radio" name="prefsystem" value="1" checked> Metric
                                         <input type="radio" name="prefsystem" value="2"> Imperial</p>
-                                    <p><input type="submit" name="changelocation" value="change weather location"></p>
+                                    <p><input class="btn btn-theme" type="submit" name="changelocation" value="change weather location"></p>
                             </form>
                             </p>
+                        </div>
 </html>
         
 <?php

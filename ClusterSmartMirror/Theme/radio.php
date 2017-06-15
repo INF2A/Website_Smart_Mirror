@@ -23,23 +23,24 @@ else
 <html>
     <section id="main-content">
           <section class="wrapper site-min-height">
-          	<h3><i class="fa fa-angle-right"></i> Radio</h3>
+          	<h1><i class="fa fa-angle-right"></i> Radio</h1>
+                <p>
+                    <?php
+                         
+                    $favoriteradio = mysqli_query($connection, "SELECT Name FROM channel INNER JOIN radio_fav ON channel.ID = radio_fav.Channel_ID WHERE radio_fav.User_ID =" . $id);
+                    while($row = mysqli_fetch_array($favoriteradio))
+                    {
+                        echo "<p>Your favorite radio station is <b>" .$row['Name'] . "</b></p>";
+                    }
+                     
+                    ?>
+                </p>           
           	<div class="row mt">
           		<div class="col-lg-12"> 
-                            <h4><b>Change radio settings</b></h4>
-                        
-                        <?php
-                            
-                        $favoriteradio = mysqli_query($connection, "SELECT Name FROM channel INNER JOIN radio_fav ON channel.ID = radio_fav.Channel_ID WHERE radio_fav.User_ID =" . $id);
-                        while($row = mysqli_fetch_array($favoriteradio))
-                        {
-                            echo "<p>Your favorite radio station is <b>" .$row['Name'] . "</b></p><br />";
-                        }
-                        
-                        ?>
-                            
+                        <div class="form-panel">
+                            <h4><i class="fa fa-angle-right"></i> Change favorite radio station </h4>                         
           		<p><form method="POST" action="radio.php">
-                                <select name="channels">
+                                <select class="form-control" name="channels">
                                     
                                     <?php 
                                         
@@ -53,8 +54,9 @@ else
                                     ?>
                                     
                                 </select><br /><br />
-                                <input type="submit" name="updateradio" value="Change favorite">
+                                <input class="btn btn-theme" type="submit" name="updateradio" value="Change favorite">
                         </p>
+                        </div>
 </html>
         
 <?php

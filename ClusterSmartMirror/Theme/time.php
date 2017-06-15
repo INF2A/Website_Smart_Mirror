@@ -21,27 +21,26 @@ else
 <html>
     <section id="main-content">
           <section class="wrapper site-min-height">
-          	<h3><i class="fa fa-angle-right"></i> Time</h3>
-          	<div class="row mt">
-          		<div class="col-lg-12">
-                            <h4><b>Search and select your time zone</b></h4>
-                            <p>
-                                
-                            <?php
+          	<h1><i class="fa fa-angle-right"></i> Time</h1>
+                <p>
+                    <?php
                             
                             $selecttimezone = mysqli_query($connection, "SELECT time_zone FROM time_zones INNER JOIN time ON time_zones.ID = time.Timezone_ID WHERE time.User_ID = " . $id);
                             while($row = mysqli_fetch_array($selecttimezone))
                             {
-                                echo "Your time zone is <b>" .$row['time_zone'] . "</b><br />";
+                                echo "Your selected time zone is <b>" .$row['time_zone'] . "</b><br />";
                             }
                             
-                            ?>
-                                
-                            </p></br>
+                    ?>
+                </p>
+          	<div class="row mt">
+          		<div class="col-lg-12">
+                            <div class="form-panel">
+                            <h4><i class="fa fa-angle-right"></i> Search your time zone </h4>
                             <p>
                                 <form method="POST" action="time.php">
-                                <input type="text" name="searchtimezone"><br /><br />
-                                <input type="submit" name="submitsearch" value="Search timezones"><br /><br /></form>
+                                <input class="form-control" type="text" name="searchtimezone"><br />
+                                <input class="btn btn-theme" type="submit" name="submitsearch" value="Search timezones"><br /><br /></form>
                             </p>
                             <p>
                                 
@@ -49,8 +48,11 @@ else
                                     if (isset($_POST['submitsearch']))
                                     {
                                 ?>
+                            </div><br />
+                            <div class="form-panel">
+                            <h4><i class="fa fa-angle-right"></i> Select your time zone from the list below </h4><br />
                             <form method="POST" action="time.php">
-                                <select name="timezonesresult">
+                                <select class="form-control" name="timezonesresult">
                                     
                                      <?php
                                         
@@ -63,15 +65,15 @@ else
                                     
                                     ?>
                                     
-                                </select>
-                                <input type="submit" name="updatetimezone" value="Change timezone"></form>
+                                </select></p><br />
+                                <p><input class="btn btn-theme" type="submit" name="updatetimezone" value="Change timezone"></form></p>
                             
                                 <?php
                                 
                                     }
                                     
                                 ?>
-                            </p>
+                            </div>
 </html>
         
 <?php
