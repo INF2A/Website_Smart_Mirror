@@ -42,6 +42,23 @@ else
           	<h1><i class="fa fa-angle-right"></i> Weather</h1>
                 <p>
                     <?php
+                    
+                    if (isset($_POST['changelocation']))
+                    {
+                        $locationland = $_POST['locationland'];
+                        $locationcountry = $_POST['locationcity'];
+                        $system = $_POST['prefsystem'];
+                        $check = checkCityOrCountry($locationland, $locationcountry);
+                        if ($check == true)
+                        {
+                            echo "Your changes have been saved";
+                            $updatetimezone = mysqli_query($connection, "UPDATE weather SET User_ID = ". $id. ", location = '". $locationcountry. "', Weather_pref_ID = ". $system);
+                        }
+                        else
+                        {
+                            echo "<p style ='font-size:18px;'><b>The country or City you entered doesn't exist in our API</b></p>";
+                        }
+                    }
                     $preferedmetric = mysqli_query($connection, "SELECT Name FROM weather_pref INNER JOIN weather ON weather_pref.ID = weather.Weather_pref_ID WHERE weather.User_ID =" . $id);
                     while($row = mysqli_fetch_array($preferedmetric)) 
                     {
@@ -60,26 +77,6 @@ else
           		<div class="col-lg-12">
                         <div class="form-panel">
                             <h4><i class="fa fa-angle-right"></i> Change location and prefered system </h4>
-                            <?php
-                            
-                            if (isset($_POST['changelocation']))
-                            {
-                                $locationland = $_POST['locationland'];
-                                $locationcountry = $_POST['locationcity'];
-                                $system = $_POST['prefsystem'];
-                                $check = checkCityOrCountry($locationland, $locationcountry);
-                                if ($check == true)
-                                {
-                                    echo "Het werkt!";
-                                    $updatetimezone = mysqli_query($connection, "UPDATE weather SET User_ID = ". $id. ", location = '". $locationcountry. "', Weather_pref_ID = ". $system);
-                                }
-                                else
-                                {
-                                    echo "<p>The country or City you entered doesn't exist in our API</p>";
-                                }
-                            }
-                            
-                            ?>
                             <p>
                             <form method="POST" action="weathertest.php">
                                 <p><input class="form-control" type="text" name="locationland"></p>
