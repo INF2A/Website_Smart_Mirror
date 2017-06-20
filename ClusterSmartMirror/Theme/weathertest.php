@@ -14,17 +14,26 @@ else
     function checkCityOrCountry($country, $city)
     {
         $land = ucfirst(strtolower($country));
-        $countries = file_get_contents('https://raw.githubusercontent.com/David-Haim/CountriesToCitiesJSON/master/countriesToCities.json');
-        $arr = json_decode($countries, true);
-        foreach ($arr[$land] as $stad) 
+        $countries = file_get_contents('https://api.vk.com/method/database.getCountries?need_all=1&count=1000&lang=en');
+        $countryarr = json_decode($countries, true);
+        foreach ($countryarr['response'] as $country) 
         {
-            if (mb_strtolower($stad) === mb_strtolower($city))
+            if (mb_strtolower($country['title']) === mb_strtolower($land))
             {
-                return true;
+                $cities = file_get_contents('https://raw.githubusercontent.com/David-Haim/CountriesToCitiesJSON/master/countriesToCities.json');
+                $cityarr = json_decode($cities, true);
+
+                foreach ($cityarr[$land] as $stad) 
+                {   
+                    if (mb_strtolower($stad) === mb_strtolower($city))
+                    {
+                        return true;
+                    }
+                }
             }
         }
         return false;
-    } 
+    }
     
 ?>
 <html>
@@ -56,24 +65,17 @@ else
                             if (isset($_POST['changelocation']))
                             {
                                 $locationland = $_POST['locationland'];
-                                $locationcity = $_POST['locationcity'];
+                                $locationcountry = $_POST['locationcity'];
                                 $system = $_POST['prefsystem'];
-                                try
-                                {
-                                $check = checkCityOrCountry($locationland, $locationcity);
+                                $check = checkCityOrCountry($locationland, $locationcountry);
                                 if ($check == true)
                                 {
-                                    echo "het werkt!";
-                                    //$updatetimezone = mysqli_query($connection, "UPDATE weather SET User_ID = ". $id. ", location = '". $location. "', Weather_pref_ID = ". $system);
+                                    echo "Het werkt!";
+                                    $updatetimezone = mysqli_query($connection, "UPDATE weather SET User_ID = ". $id. ", location = '". $locationcountry. "', Weather_pref_ID = ". $system);
                                 }
                                 else
                                 {
-                                    echo "<p>Couldn't save new location, please enter an existing city</p>";
-                                }
-                                }
-                                catch (Exception $e)
-                                {
-                                    echo "Country doesn't exist";
+                                    echo "<p>The country or City you entered doesn't exist in our API</p>";
                                 }
                             }
                             
